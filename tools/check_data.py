@@ -33,7 +33,7 @@ def main():
     args = vars(parser.parse_args())
 
     # find file
-    file = glob(f'./data/{args["team_name"]}/*_data.csv')
+    file = glob(f'./data/{args.team_name}/*_data.csv')
 
     # more than 1 data file?
     if len(file)>1:
