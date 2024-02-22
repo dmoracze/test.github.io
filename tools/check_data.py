@@ -30,7 +30,7 @@ def main():
     # parser
     parser = argparse.ArgumentParser()
     parser.add_argument('team_name', type=str)
-    args = vars(parser.parse_args())
+    args = parser.parse_args()
 
     # find file
     file = glob(f'./data/{args.team_name}/*_data.csv')
