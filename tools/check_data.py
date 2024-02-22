@@ -29,7 +29,7 @@ def checks(file):
 def main():
     # parser
     parser = argparse.ArgumentParser()
-    parser.add_argument('team_name', required=True, type=str)
+    parser.add_argument('team_name', type=str)
     args = vars(parser.parse_args())
 
     # find file
@@ -41,6 +41,7 @@ def main():
     elif len(file)==0:
         raise Exception('No data file found!')
     else:
+        print(f'Checking data file: {file[0]}')
         checks(file[0])
 
 if __name__ == "__main__":
