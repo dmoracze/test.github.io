@@ -1,5 +1,6 @@
 import pandas as pd
 import datetime
+import argparse
 from glob import glob
 
 dict_cols = ['subject_id', 'site_id', 'age', 'sex', 'dob']
@@ -26,8 +27,13 @@ def checks(file):
         print('Dates are not in an appropriate format')
 
 def main():
+    # parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('team_name', required=True, type=str)
+    args = vars(parser.parse_args())
+
     # find file
-    file = glob('./data/*_data.csv')
+    file = glob(f'./data/{arsg["team_name"]}/*_data.csv')
 
     # more than 1 data file?
     if len(file)>1:
