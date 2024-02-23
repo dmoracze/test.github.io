@@ -1,11 +1,9 @@
 ---
 layout: page
-title: Test Site
-tagline: This is a test site.
+title: The interplay between brain, behavior, and cognition from childhood to adulthood
+tagline: The creation of simulated datasets from eight independent groups worldwide
 description: 
 ---
-
-The interplay between brain, behavior, and cognition from childhood to adulthood: The creation of simulated datasets from eight independent groups worldwide 
 
 Each group simulated three sets of longitudinal data for brain measures such as volume and cortical thickness as well as cognitive and behavioral measures based on their understanding and models of development. These datasets have been released to the community where different modeling approaches (e.g., linear mixed effects model, cross-lagged panel model) can be used to estimate brain-behavior relationship. 
 The following guidelines to create the datasets are as follows:
