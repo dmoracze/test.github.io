@@ -1,6 +1,7 @@
 name: Test Data
 
-on: pull_request
+on:
+  pull_request
 
 jobs:
   check_data:
@@ -9,6 +10,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Get branch name
+        shell: bash
+        run: echo "BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -19,4 +24,4 @@ jobs:
         run: pip install pandas
 
       - name: Run script
-        run: python ./tools/check_data.py ${{ github.ref_name }}
+        run: python tools/check_data.py $BRANCH
