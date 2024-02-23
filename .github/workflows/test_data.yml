@@ -24,4 +24,4 @@ jobs:
         run: pip install pandas
 
       - name: Run script
-        run: echo $BRANCH
+        run: python tools/check_data.py $BRANCH
