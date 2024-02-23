@@ -8,6 +8,7 @@ description: Playground for GitHub pages
 Middle section
 
 - [Tutorial](pages/tutorial.md)
+- [Full Abstract](pages/full_abstract.md)
 
 ---
 
