@@ -169,27 +169,30 @@ def main():
     # set status
     fail = 0
 
-    # find file
+    # find file(s)
     files = glob(f'./data/{args.team_name}/{args.team_name}*data*.csv')
-
-    # loop through and QC each data file
-    print(f'++ {len(files)} data files found')
-    for file in sorted(files):
-        print(f'++ Checking data file: {file}')
-        df = pd.read_csv(file)
-        try:
+    if len(files)==0:
+        print('ERROR: No data files found!')
+        fail = 1
+    else:
+        # loop through and QC each data file
+        print(f'++ {len(files)} data files found')
+        for file in sorted(files):
+            print(f'++ Checking data file: {file}')
             df = pd.read_csv(file)
-            errors = qc_checks(df)
-            if len(errors) > 0:
-                print(f'++ {len(errors)} ERRORS FOUND:')
+            try:
+                df = pd.read_csv(file)
+                errors = qc_checks(df)
+                if len(errors) > 0:
+                    print(f'++ {len(errors)} ERRORS FOUND:')
+                    fail = 1
+                    for e in errors:
+                        print(f'    {e}')
+                else:
+                    print('++ No errors found!')
+            except:
+                print(f'ERROR: There was a problem reading data file: {file}')
                 fail = 1
-                for e in errors:
-                    print(f'    {e}')
-            else:
-                print('++ No errors found!')
-        except:
-            print(f'ERROR: There was a problem reading data file: {file}')
-            fail = 1
 
     # exit codes
     if fail==1:
