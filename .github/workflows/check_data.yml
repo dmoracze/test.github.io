@@ -27,7 +27,7 @@ jobs:
         id: check_data
         shell: bash
         run: |
-          echo "results=`python tools/check_data.py $BRANCH`" >> $GITHUB_OUTPUT
+          echo "results=$(python tools/check_data.py $BRANCH)" >> $GITHUB_OUTPUT
 
       - name: Auto comment
         shell: bash
