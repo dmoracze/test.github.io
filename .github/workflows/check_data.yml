@@ -24,4 +24,20 @@ jobs:
         run: pip install pandas
 
       - name: Run script
-        run: python tools/check_data.py $BRANCH
+        id: check_data
+        shell: bash
+        run: |
+          results=$(python tools/check_data.py $BRANCH)
+          echo "::set-output name=results::$results"
+
+      - name: Auto comment
+        uses: wow-actions/auto-comment@v1.1.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pullRequestOpened: |
+          Summary of QC:
+          ```
+
+          ${{ steps.check_data.outputs.results }}
+
+          ```
