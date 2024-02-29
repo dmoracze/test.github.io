@@ -29,10 +29,9 @@ jobs:
         run: |
           {
             echo "results<<EOF"
-            echo "$(python tools/check_data.py $BRANCH)" 
+            python tools/check_data.py $BRANCH
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
-          echo $?
 
       - name: Auto comment
         shell: bash
