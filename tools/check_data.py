@@ -166,6 +166,9 @@ def main():
     parser.add_argument('team_name', type=str)
     args = parser.parse_args()
 
+    # set status
+    fail = 0
+
     # find file
     files = glob(f'./data/{args.team_name}/{args.team_name}*data*.csv')
 
@@ -179,15 +182,22 @@ def main():
             errors = qc_checks(df)
             if len(errors) > 0:
                 print(f'++ {len(errors)} ERRORS FOUND:')
+                fail = 1
                 for e in errors:
                     print(f'    {e}')
-                sys.exit(1)
             else:
                 print('++ No errors found!')
-                sys.exit(0)
         except:
             print(f'ERROR: There was a problem reading data file: {file}')
-            sys.exit(1)
+            fail = 1
+
+    # exit codes
+    if fail==1:
+        print('++ Finished with errors.')
+        sys.exit(1)
+    elif fail==0:
+        print('++ Finished without errors!')
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
