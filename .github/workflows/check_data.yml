@@ -27,8 +27,7 @@ jobs:
         id: check_data
         shell: bash
         run: |
-          results=$(python tools/check_data.py $BRANCH)
-          echo "::set-output name=results::$results"
+          echo "results=`python tools/check_data.py $BRANCH`" >> $GITHUB_OUTPUT
 
       - name: Auto comment
         uses: wow-actions/auto-comment@v1.1.2
@@ -37,4 +36,4 @@ jobs:
           pullRequestOpened: |
           Summary of QC:
 
-          This is a test
+          ${{ steps.check_data.outputs.results }}
