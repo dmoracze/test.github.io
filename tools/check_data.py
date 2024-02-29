@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import numpy as np
 import datetime
@@ -180,10 +181,13 @@ def main():
                 print(f'++ {len(errors)} ERRORS FOUND:')
                 for e in errors:
                     print(f'    {e}')
+                sys.exit(1)
             else:
                 print('++ No errors found!')
+                sys.exit(0)
         except:
             print(f'ERROR: There was a problem reading data file: {file}')
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
