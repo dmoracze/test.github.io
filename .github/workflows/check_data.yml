@@ -26,8 +26,13 @@ jobs:
       - name: Run script
         id: check_data
         shell: bash
-        run: echo "results=$(python tools/check_data.py $BRANCH)" >> "$GITHUB_OUTPUT"
+        run: |
+          {
+            echo "results<<EOF"
+            echo "$(python tools/check_data.py $BRANCH)" 
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
 
       - name: Auto comment
         shell: bash
-        run: echo "${{ steps.check_data.outputs.results }}""
+        run: echo "${{ steps.check_data.outputs.results }}"
