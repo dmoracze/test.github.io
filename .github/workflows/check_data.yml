@@ -36,8 +36,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
           Summary of QC:
-          ```
 
           ${{ steps.check_data.outputs.results }}
-
-          ```
