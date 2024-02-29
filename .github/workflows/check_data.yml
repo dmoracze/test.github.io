@@ -37,4 +37,4 @@ jobs:
           pullRequestOpened: |
           Summary of QC:
 
-          ${{ steps.check_data.outputs.results }}
+          This is a test
