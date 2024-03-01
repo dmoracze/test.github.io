@@ -1,7 +1,10 @@
 name: Check data and comment on PR
 
 on:
-  [pull_request, push]
+  pull_request
+  push:
+    branches-ignore:
+      - main
 
 permissions:
   contents: read
