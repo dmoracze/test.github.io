@@ -1,6 +1,7 @@
 name: Check data and comment on PR
 
 on:
+  push
   pull_request
 
 permissions:
@@ -40,10 +41,6 @@ jobs:
             echo "$(cat results.txt)" 
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
-
-      - name: Print output to terminal
-        if: (success() || failure())
-        run: cat results.txt
 
       - name: Auto comment
         uses: marocchino/sticky-pull-request-comment@v2.9.0
