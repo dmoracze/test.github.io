@@ -1,8 +1,7 @@
 name: Check data and comment on PR
 
 on:
-  push
-  pull_request
+  [pull_request, push]
 
 permissions:
   contents: read
