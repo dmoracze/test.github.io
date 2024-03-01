@@ -29,18 +29,31 @@ jobs:
       - name: Run script
         id: check_data
         shell: bash
+        run: python tools/check_data.py $BRANCH | tee results.txt
+
+      - name: Capture output
+        id: qc
+        if: (success() || failure())
         run: |
-          python tools/check_data.py $BRANCH | tee results.txt
+         {
+            echo "results<<EOF"
+            echo "$(cat results.txt)" 
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Print output to terminal
+        if: (success() || failure())
+        run: cat results.txt
 
       - name: Auto comment
         uses: marocchino/sticky-pull-request-comment@v2.9.0
         if: (success() || failure())
         with:
-          recreate: true
-          header: check_data
-          path: results.txt
+          message: |
+            Data checking results:
+            ```
+            ${{ steps.qc.outputs.results }}"
+            ```
 
-      - name: Print output
-        if: (success() || failure())
-        run: |
-          cat results.txt >> "${GITHUB_STEP_SUMMARY}"
+
+
